@@ -4,22 +4,51 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import StoreFront from './store.js';
 
 function TabContainer(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <div style={{width: '100%'}}>
       {props.children}
-    </Typography>
+    </div>
   );
 }
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+const styles = {
+  labelContainer: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    textTransform: 'capitalize'
   },
-});
+  tabsRoot: {
+    borderBottom: '2px solid #34C896',
+  },
+  tabsIndicator: {
+    backgroundColor: '#34C896',
+  }
+};
+
+const style = {
+  appbar: {
+    boxShadow: 'none'
+  },
+  tabs: {
+    backgroundColor: 'white',
+    borderBottomColor: '#34C896'
+  },
+  label: {
+    backgroundColor: '#34C896',
+    color: 'white',
+    marginLeft: 50,
+    marginTop: 20,
+    fontSize: 30,
+    fontWeight: 'bold',
+    paddingLeft: 30,
+    paddingRight: 30,
+    borderBottomColor: '#34C896'
+  }
+};
+  
 
 class Store extends React.Component {
   state = {
@@ -35,25 +64,20 @@ class Store extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange}>
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" href="#basic-tabs" />
+      <div>
+        <AppBar position="static" style={style.appbar}>
+          <Tabs value={value} onChange={this.handleChange} 
+          style={style.tabs} classes={{root: classes.tabsRoot, indicator: classes.tabsIndicator}}>
+            <Tab label="Fruit" style={style.label} classes={{
+              labelContainer: classes.labelContainer,
+              root: classes.tabsRoot}}/>
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer>Item One</TabContainer>}
-        {value === 1 && <TabContainer>Item Two</TabContainer>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
+        {value === 0 && <TabContainer><StoreFront /></TabContainer>}
       </div>
     );
   }
 }
-
-Store.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
