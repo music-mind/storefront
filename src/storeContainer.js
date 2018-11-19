@@ -6,12 +6,6 @@ class StoreContainer extends Container {
 	state = {
 		"data": [],
 		"cart": [], //{name: 'apple', imgSrc: 'https://tinyurl.com/lg5rj5z', quantity: 2, stock: 5, price: 2.50}
-		"banana": 0,
-		"apple": 0,
-		"raspberry": 0,
-		"kiwi": 0,
-		"very delicious pineapple with a long name": 0,
-		"strawberries": 0
 	}
 
 	setData(data) {
